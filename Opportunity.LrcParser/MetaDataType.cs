@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 
 namespace Opportunity.LrcParser
 {
@@ -204,6 +205,17 @@ namespace Opportunity.LrcParser
             }
         }
 
+        private static TimeSpan ParseOffsetString(string s)
+        {
+            var fmt = new NumberFormatInfo();
+            fmt.NegativeSign = "−";
+            s = s.Replace(',', '.');
+            var number = double.Parse(s, fmt);
+            var tick = (long)(number * 10000);
+            var result = new TimeSpan(tick);
+            return result;
+        }
+
         #region Pre-defined
         /// <summary>
         /// Pre-defined <see cref="MetaDataType"/>.
@@ -216,15 +228,17 @@ namespace Opportunity.LrcParser
                 ["ti"] = new NoValidateMetaDataType("ti"),
                 ["au"] = new NoValidateMetaDataType("au"),
                 ["by"] = new NoValidateMetaDataType("by"),
-                ["offset"] = new DelegateMetaDataType<TimeSpan>("offset", v => TimeSpan.FromTicks((long)(double.Parse(v, System.Globalization.NumberStyles.Any) * 10000)), ts => ts.TotalMilliseconds.ToString("+0.#;-0.#"), default),
+                ["offset"] = new DelegateMetaDataType<TimeSpan>("offset", 
+                    v => ParseOffsetString(v),//TimeSpan.FromTicks((long)(double.Parse(v, System.Globalization.NumberStyles.Any) * 10000)),
+                    ts => ts.TotalMilliseconds.ToString("+0.#;-0.#"), default),
                 ["re"] = new NoValidateMetaDataType("re"),
                 ["ve"] = new NoValidateMetaDataType("ve"),
-                ["length"] = new DelegateMetaDataType<DateTime>("length", v =>
+                ["length"] = new DelegateMetaDataType<TimeSpan>("length", v =>
                 {
-                    if (DateTimeExtension.TryParseLrcString(v, 0, v.Length, out var r))
+                    if (TimeSpanExtension.TryParseLrcString(v, 0, v.Length, out var r))
                         return r;
                     throw new ArgumentException("Invalid length string.");
-                }, d => d.ToTimestamp().ToLrcStringShort(), default),
+                }, d => d.ToLrcStringShort(), default),
             });
 
         /// <summary>

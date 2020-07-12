@@ -1,20 +1,24 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard1.0</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <ApplicationIcon />
     <OutputType>Library</OutputType>
     <StartupObject />
-    <Authors>Opportunity</Authors>
-    <Description>An library for lrc files.</Description>
+    <Authors>Opportunity (Project owner), mod by appleneko2001</Authors>
+    <Description>An lyric file parser (.lrc parser) for C# project.
+Mod by appleneko2001</Description>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageProjectUrl>https://github.com/OpportunityLiu/LrcParser</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/OpportunityLiu/LrcParser</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/appleneko2001/LrcParser</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/appleneko2001/LrcParser</RepositoryUrl>
     <PackageLicenseUrl>https://github.com/OpportunityLiu/LrcParser/blob/master/LICENSE</PackageLicenseUrl>
     <Version>1.0.4</Version>
-    <PackageReleaseNotes>* Fix bug</PackageReleaseNotes>
+    <PackageReleaseNotes>* Use TimeSpan instead of DateTime on Timestamp property
+* Targeted to .Net Standard 2.0</PackageReleaseNotes>
     <PackageTags>lrc; lyrics; parser;</PackageTags>
     <RepositoryType>git</RepositoryType>
+    <PackageId>Opportunity.LrcParser (TimeSpan mod)</PackageId>
+    <Company>Opportunity (Project owner), mod by appleneko2001</Company>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -28,5 +32,9 @@
     <LangVersion>latest</LangVersion>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="DateTimeExtension.cs" />
+  </ItemGroup>
 
 </Project>

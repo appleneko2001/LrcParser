@@ -21,22 +21,22 @@ namespace Opportunity.LrcParser
         /// </summary>
         /// <param name="timestamp">Timestamp of this line.</param>
         /// <param name="content">Lyrics of this line.</param>
-        public Line(DateTime timestamp, string content)
+        public Line(TimeSpan timestamp, string content)
         {
             Timestamp = timestamp;
             this.content = (content ?? "").Trim();
         }
 
         [System.Diagnostics.DebuggerBrowsable(System.Diagnostics.DebuggerBrowsableState.Never)]
-        internal DateTime InternalTimestamp;
+        internal TimeSpan InternalTimestamp;
         /// <summary>
         /// Timestamp of this line of lyrics.
         /// </summary>
         /// <exception cref="ArgumentException"><see cref="DateTime.Kind"/> of value is not <see cref="DateTimeKind.Unspecified"/>.</exception>
-        public DateTime Timestamp
+        public TimeSpan Timestamp
         {
             get => this.InternalTimestamp;
-            set => this.InternalTimestamp = value.ToTimestamp();
+            set => this.InternalTimestamp = value;
         }
 
         [System.Diagnostics.DebuggerBrowsable(System.Diagnostics.DebuggerBrowsableState.Never)]
@@ -94,7 +94,7 @@ namespace Opportunity.LrcParser
         /// <param name="timestamp">Timestamp of this line.</param>
         /// <param name="speaker">Speaker of this line.</param>
         /// <param name="lyrics">Lyrics of this line.</param>
-        public LineWithSpeaker(DateTime timestamp, string speaker, string lyrics)
+        public LineWithSpeaker(TimeSpan timestamp, string speaker, string lyrics)
             : base(timestamp, null)
         {
             this.Speaker = speaker;

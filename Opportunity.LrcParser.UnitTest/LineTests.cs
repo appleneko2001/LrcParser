@@ -16,10 +16,10 @@ namespace Opportunity.LrcParser.UnitTest
         [DataTestMethod]
         public void Create(string content, string expected)
         {
-            var ts = new DateTime(DateTime.Now.Ticks);
+            var ts = new TimeSpan(0);
             var line = new Line(ts, content);
             Assert.AreEqual(expected, line.Content);
-            Assert.AreEqual(ts.TimeOfDay.Ticks, line.Timestamp.Ticks);
+            Assert.AreEqual(ts.Ticks, line.Timestamp.Ticks);
         }
 
         [DataRow("", "", "", "", "")]
@@ -35,11 +35,11 @@ namespace Opportunity.LrcParser.UnitTest
         [DataTestMethod]
         public void CreateWithSpeaker(string speaker, string expectedSpeaker, string lyrics, string expectedLyrics, string expected)
         {
-            var ts = new DateTime(DateTime.Now.Ticks);
+            var ts = new TimeSpan(DateTime.Now.Ticks);
             var line = new LineWithSpeaker(ts, speaker, lyrics);
             Assert.AreEqual(expectedSpeaker, line.Speaker);
             Assert.AreEqual(expectedLyrics, line.Lyrics);
-            Assert.AreEqual(ts.TimeOfDay.Ticks, line.Timestamp.Ticks);
+            Assert.AreEqual(ts.Ticks, line.Timestamp.Ticks);
             Assert.AreEqual(new Line(ts, expected).ToString(), line.ToString());
         }
     }

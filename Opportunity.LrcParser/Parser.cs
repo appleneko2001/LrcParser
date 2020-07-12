@@ -113,7 +113,7 @@ namespace Opportunity.LrcParser
                 var oldPos = this.currentPosition;
                 if (!readTag(next, out var tagStart, out var tagEnd))
                     break;
-                if (DateTimeExtension.TryParseLrcString(this.Data, tagStart, tagEnd, out var time))
+                if (TimeSpanExtension.TryParseLrcString(this.Data, tagStart, tagEnd, out var time))
                 {
                     this.Lines.Add(new TLine { InternalTimestamp = time });
                     isIdTagLine = false;

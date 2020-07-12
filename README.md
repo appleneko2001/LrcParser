@@ -1,14 +1,14 @@
-# LrcParser
-[![Build status](https://ci.appveyor.com/api/projects/status/7ne8mex2di844260?svg=true)](https://ci.appveyor.com/project/OpportunityLiu/lrcparser)
-[![NuGet](https://img.shields.io/nuget/v/Opportunity.LrcParser.svg)](https://www.nuget.org/packages/Opportunity.LrcParser/)  
-An library for lrc files.
+### LrcParser mod by appleneko2001
+An lyric file parser (.lrc parser) for C# project.
+This is modded version with slightly changes framework of working.
+for original ver. ====>> https://github.com/OpportunityLiu/LrcParser
 
-## Quick Start
+##### Changes: 
+* Use TimeSpan type instead of DateTime on timestamp property
+* UnitTest slightly changed to support this library
 
-### Parse An `LRC` File
+##### Requirements:
+This modded library uses .Net Standard 2.0, so your project should targeting .Net Framework to 4.6.1 at least
+for more information about minimum requirement of standard: https://docs.microsoft.com/en-us/dotnet/standard/net-standard#net-implementation-support
 
-To parse `lrc` files, use `Lyrics.Parse(string)` method, overloads can be used for variants of `lrc` formats.
-
-### Stringify A `Lyrics` Instance
-
-To create `lrc` file with a `Lyrics<TLine>` instance, call its `ToString()` method, you can also use `ToString(LyricsFormat)` overload to specify format settings.
+Or if you really want to use more older framework version, you can try to rebuild this library and targeting to .Net Standard 1.1 (or create new library project and copy-paste all codes. UnitTest are optional component).
