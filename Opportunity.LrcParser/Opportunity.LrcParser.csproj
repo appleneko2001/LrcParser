@@ -17,7 +17,7 @@ Mod by appleneko2001</Description>
 * Targeted to .Net Standard 2.0</PackageReleaseNotes>
     <PackageTags>lrc; lyrics; parser;</PackageTags>
     <RepositoryType>git</RepositoryType>
-    <PackageId>Opportunity.LrcParser (TimeSpan mod)</PackageId>
+    <PackageId>Appleneko2001.LrcParser</PackageId>
     <Company>Opportunity (Project owner), mod by appleneko2001</Company>
   </PropertyGroup>
 
