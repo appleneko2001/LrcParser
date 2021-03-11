@@ -1,0 +1,42 @@
+name: .NET Core Desktop
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.403
+        
+    - name: Restore dependencies
+      run: dotnet restore
+      
+    - name: Build
+      run: dotnet build --configuration Release --no-restore
+      
+    - name: Test
+      run: dotnet test --no-restore --verbosity normal
+      
+    - name: Pack
+      run: dotnet pack --no-build --configuration Release Opportunity.LrcParser/Opportunity.LrcParser.csproj --output .
+      
+    - name: Push package to NuGet
+      run: dotnet nuget push *.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_UPLOAD_SECRET }} --skip-duplicate
+
+    - name: Push package to GitHub
+      run: dotnet nuget push *.nupkg --no-symbols --skip-duplicate
+      env:
+        NUGET_AUTH_TOKEN: ${{ github.token }}
