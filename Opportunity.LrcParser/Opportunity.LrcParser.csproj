@@ -6,8 +6,7 @@
     <OutputType>Library</OutputType>
     <StartupObject />
     <Authors>Opportunity (Project owner), mod by appleneko2001</Authors>
-    <Description>An lyric file parser (.lrc parser) for C# project.
-Mod by appleneko2001</Description>
+    <Description>An lyric file parser (.lrc parser) for C# project.</Description>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageProjectUrl>https://github.com/appleneko2001/LrcParser</PackageProjectUrl>
     <RepositoryUrl>https://github.com/appleneko2001/LrcParser</RepositoryUrl>
@@ -22,13 +21,13 @@ Mod by appleneko2001</Description>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>bin\Release\netstandard1.0\Opportunity.LrcParser.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\netstandard2.0\Opportunity.LrcParser.xml</DocumentationFile>
     <LangVersion>latest</LangVersion>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\Debug\netstandard1.0\Opportunity.LrcParser.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\netstandard2.0\Opportunity.LrcParser.xml</DocumentationFile>
     <LangVersion>latest</LangVersion>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
