@@ -37,4 +37,4 @@ jobs:
       run: dotnet nuget push *.nupkg --skip-duplicate --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_UPLOAD_SECRET }}
 
     - name: Push package to GitHub
-      run: dotnet nuget push *.nupkg --skip-duplicate --source "github" --api-key ${{ secrets.PACKAGE_UPLOAD_SECRET }}
+      run: dotnet nuget push *.nupkg --skip-duplicate --source https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json --api-key ${{ secrets.PACKAGE_UPLOAD_SECRET }}
