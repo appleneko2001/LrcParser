@@ -34,9 +34,7 @@ jobs:
       run: dotnet pack --no-build --configuration Release Opportunity.LrcParser/Opportunity.LrcParser.csproj --output .
       
     - name: Push package to NuGet
-      run: dotnet nuget push *.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_UPLOAD_SECRET }} --skip-duplicate
+      run: dotnet nuget push *.nupkg --skip-duplicate --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_UPLOAD_SECRET }}
 
     - name: Push package to GitHub
-      run: dotnet nuget push *.nupkg --no-symbols --skip-duplicate
-      env:
-        NUGET_AUTH_TOKEN: ${{ github.token }}
+      run: dotnet nuget push *.nupkg --skip-duplicate --source "github" --api-key ${{ secrets.PACKAGE_UPLOAD_SECRET }}
